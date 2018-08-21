@@ -185,7 +185,7 @@
 
                 window.onbeforeunload = null;
 
-                if ( redux.optName.args.ajax_save === true ) {
+                if ( redux.args.ajax_save === true ) {
                     $.redux.ajax_save( $( this ) );
                     e.preventDefault();
                 } else {
@@ -659,7 +659,8 @@
 
                 var type = $( this ).attr( 'data-type' );
                 //console.log(type);
-                if ( typeof redux.field_objects != 'undefined' && redux.field_objects[type] && redux.field_objects[type] ) {
+                //if ( typeof redux.field_objects != 'undefined' && redux.field_objects[type] && redux.field_objects[type] ) {
+                if ( type in redux.field_objects && typeof redux.field_objects[type].init == 'function' ) {
                     redux.field_objects[type].init();
                 }
                 if ( !redux.customizer && $( this ).hasClass( 'redux_remove_th' ) ) {
